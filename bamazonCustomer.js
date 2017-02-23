@@ -15,10 +15,10 @@ var connection = mysql.createConnection({
 // connection.connect();
 connection.connect(function(err){
   if(err){
-    console.log('Error connecting to Db');
+    console.log("error");
     return;
   }
-  console.log('Connection established');
+  console.log("connected");
 });
 
 var itemsOrdered = []
@@ -27,7 +27,7 @@ connection.query('SELECT id, product_name, price FROM products', function(err, r
   if(err) console.log(err);
 
 //update table with product table information
-var table = new Table({
+  var table = new Table({
     head: ['Item Id#', 'Product Name', 'Price'],
     style: {
       compact: false,
@@ -40,15 +40,17 @@ var table = new Table({
     table.push(
       [result[i].id, result[i].product_name, result[i].price]
     );
-  }
+  };
+
   console.log(table.toString());
 
   orderPlaced();
+
 });
 
 var orderPlaced = function(err, data){
 
-  var recentOrder = new Object();
+  var recentOrder = {};
 
   // inquirer.prompt([
   // {type: "input",
@@ -63,6 +65,7 @@ var orderPlaced = function(err, data){
   //     quantity: data.quantity_purchased};
   //   console.log(recentOrder);
   // });
+  
   var transactionEntry = {
     properties: {
       id:{
@@ -74,8 +77,6 @@ var orderPlaced = function(err, data){
     }
   };
 
-  console.log(transactionEntry);
-
   prompt.start();
 
   prompt.get(transactionEntry, function(err, response){
@@ -85,32 +86,36 @@ var orderPlaced = function(err, data){
     var recentOrder = {
       id: response.id,
       quantity: response.quantity
-    }
-
+    };
+    
   itemsOrdered.push(recentOrder);
-
+  console.log(recentOrder);
+  console.log(itemsOrdered);
 
   connection.query('SELECT * FROM products WHERE id=?', itemsOrdered[0].id, function(err, result){
+      console.log(result);
       if (err){console.log("error")
 
-      if (result.stock_quanitty < itemsOrdered[0].quantity){
+      }
+      console.log(itemsOrdered[0]);
+      if (result.stock_quantity < itemsOrdered[0].quantity){
         console.log("insufficient quanity in stock");
         
         connection.end(function(err) {
           console.log("transaction ended")
         });
 
-      }else if (result.stock_quantity >= itemsOrdered[0].quantity){
+      }else {
+
         console.log("your order has been placed");
         
         connection.end(function(err) {
           console.log("transaction ended")
         }); 
-       
       };//else if
-     };
   });//connection.query 
-  }; //prompt.get
+
+  }); //prompt.get
 }; //var orderPlaced
 
 
