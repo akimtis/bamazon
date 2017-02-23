@@ -108,11 +108,29 @@ var orderPlaced = function(err, data){
       }else {
 
         console.log("your order has been placed");
+
+        console.log(itemsOrdered[0].quantity + ' items purchased');
+
+        console.log(result[0].product_name + ' ' + "price for each $" + result[0].price);
+
+        var total = result[0].price * itemsOrdered[0].quantity;
+          console.log("Total Price: " + total)
+
+        var newQuantity = result[0].stock_quantity - itemsOrdered[0].quantity;
+          newQuantity = products.stock_quantity;
+
+          console.log("newQuantity: " + newQuantity);
+
+        connection.query("UPDATE products SET stock_quantity = " + newQuantity +" WHERE id = " + itemsOrdered[0].id, function(err, res){
         
-        connection.end(function(err) {
-          console.log("transaction ended")
-        }); 
-      };//else if
+            
+            connection.end(function(err) {
+              console.log("transaction ended")
+            }); 
+        })//connection.query
+
+
+      };//else 
   });//connection.query 
 
   }); //prompt.get
