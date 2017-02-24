@@ -117,7 +117,6 @@ var orderPlaced = function(err, data){
           console.log("Total Price: " + total)
 
         var newQuantity = result[0].stock_quantity - itemsOrdered[0].quantity;
-          newQuantity = products.stock_quantity;
 
           console.log("newQuantity: " + newQuantity);
 
