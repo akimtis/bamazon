@@ -65,7 +65,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'terra_cotta_pot',1,50,20),(2,'velvet_blazer',3,75,10),(3,'sneakers',2,150,15),(4,'wool_aline_dress',3,120,5),(5,'brass_nightstand',1,150,5),(6,'desk_lamp',1,50,5),(7,'bumble_bee_pendant',2,30,7),(8,'silk_blouse',3,40,15),(9,'wall_art',1,350,-4),(10,'satin_pumps',2,90,15);
+INSERT INTO `products` VALUES (1,'terra_cotta_pot',1,50,20),(2,'velvet_blazer',3,75,10),(3,'sneakers',2,150,15),(4,'wool_aline_dress',3,120,5),(5,'brass_nightstand',1,150,5),(6,'desk_lamp',1,50,5),(7,'bumble_bee_pendant',2,30,7),(8,'silk_blouse',3,40,15),(9,'wall_art',1,350,-7),(10,'satin_pumps',2,90,15);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,4 +105,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-22 22:10:20
+-- Dump completed on 2017-02-23 21:33:38
